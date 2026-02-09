@@ -229,13 +229,11 @@ print(f"GPU: {torch.cuda.get_device_name(0)}")
 - **Range**: 0.5 (random) to 1.0 (perfect)
 - **Higher is better**
 - Measures discrimination (ranking ability)
-- GRAFT typically achieves 0.61-0.80 depending on dataset
 
 ### IBS (Integrated Brier Score)
 - **Range**: 0 (perfect) to 1 (worst)
 - **Lower is better**
 - Measures calibration (prediction accuracy over time)
-- GRAFT typically achieves 0.05-0.20 depending on dataset
 
 ### Fold-Averaged vs Seed-Averaged
 - **Fold-Averaged**: Mean across folds for each seed, then std across seeds
