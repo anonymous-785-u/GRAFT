@@ -29,8 +29,8 @@ GRAFT outperforms classical and deep learning baselines in both discrimination (
 
 ### System Requirements
 - **Python**: 3.8 or higher
-- **GPU**: CUDA-capable GPU recommended (optional but significantly faster)
-- **RAM**: 16GB minimum, 32GB recommended
+- **GPU**: CUDA-capable GPU recommended (optional but faster)
+- **RAM**: 8GB minimum, 16GB recommended
 - **Storage**: ~5GB for datasets and outputs
 
 ### Python Packages
@@ -58,25 +58,7 @@ torchtuples>=0.2.2
 
 ## Installation
 
-### Option 1: Using pip
-
-```bash
-# Clone the repository
-git clone https://github.com/anonymous-785-u/GRAFT.git
-cd GRAFT
-
-# Create virtual environment (recommended)
-python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
-
-# Install dependencies
-pip install numpy pandas scikit-learn scipy
-pip install lifelines pycox scikit-survival
-pip install torch torchsort torchtuples
-pip install matplotlib
-```
-
-### Option 2: Using conda
+### Using conda
 
 ```bash
 # Clone the repository
@@ -182,16 +164,12 @@ python Experiment_2.py
 - Adds Gaussian noise features at 0×, 3×, 5×, 7×, 10× multipliers
 - Evaluates on all 6 datasets with 3-fold CV and 3 seeds
 
-**Expected runtime:** 60-90 minutes (with GPU)
-
 **Outputs:**
 - Console tables showing performance degradation under noise
 - `ablation_cindex_summary.png` - C-index plot (6 subplots, one per dataset)
 - `ablation_ibs_summary.png` - IBS plot (6 subplots, one per dataset)
 
 **Corresponds to:** Figure 1 in the paper
-
-**Expected behavior:** Full GRAFT should maintain performance as noise increases, while No STG and Linear Only degrade.
 
 ---
 
@@ -208,16 +186,12 @@ python Experiment_3.py
 - Adds Student's t noise (df=2, heavy tails) at 3×, 5×, 7×, 10× multipliers
 - Evaluates on all 6 datasets with 3-fold CV and 3 seeds
 
-**Expected runtime:** 90-120 minutes (with GPU)
-
 **Outputs:**
 - Console tables showing robustness across noise levels
 - `noise_robustness_cindex_summary.png` - C-index plot (6 subplots)
 - `noise_robustness_ibs_summary.png` - IBS plot (6 subplots)
 
 **Corresponds to:** Figure 2 in the paper
-
-**Expected behavior:** GRAFT should show the flattest performance curves (best robustness), while models without feature selection (DeepHit, DeepSurv) degrade significantly.
 
 ---
 
@@ -235,8 +209,6 @@ This will:
 - Save outputs to `experiment_1_output.log`, `experiment_2_output.log`, `experiment_3_output.log`
 - Display progress and timestamps
 - Generate a summary report
-
-**Total expected runtime:** 3-4 hours (with GPU)
 
 ## GPU Acceleration
 
