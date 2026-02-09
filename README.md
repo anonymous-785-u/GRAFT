@@ -21,7 +21,6 @@ GRAFT outperforms classical and deep learning baselines in both discrimination (
 - **GPU-accelerated** training for all deep learning models (GRAFT, DeepHit, DeepSurv)
 - **Local Kaplan-Meier imputation** for handling censored data
 - **Global stochastic gates** for population-level feature selection
-- **Early stopping** with patience for efficient training
 - **Comprehensive evaluation** on 6 benchmark datasets
 - **Reproducible** experiments with multiple seeds and cross-validation
 
