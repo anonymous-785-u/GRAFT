@@ -29,7 +29,7 @@ GRAFT outperforms classical and deep learning baselines in both discrimination (
 ### System Requirements
 - **Python**: 3.8 or higher
 - **GPU**: CUDA-capable GPU recommended (optional but significantly faster)
-- **RAM**: 16GB minimum, 32GB recommended
+- **RAM**: 8GB minimum, 16GB recommended
 - **Storage**: ~5GB for datasets and outputs
 
 ### Python Packages
@@ -57,25 +57,7 @@ torchtuples>=0.2.2
 
 ## Installation
 
-### Option 1: Using pip
-
-```bash
-# Clone the repository
-git clone https://github.com/anonymous-785-u/GRAFT.git
-cd GRAFT
-
-# Create virtual environment (recommended)
-python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
-
-# Install dependencies
-pip install numpy pandas scikit-learn scipy
-pip install lifelines pycox scikit-survival
-pip install torch torchsort torchtuples
-pip install matplotlib
-```
-
-### Option 2: Using conda
+### Using conda
 
 ```bash
 # Clone the repository
@@ -113,7 +95,7 @@ Download the following datasets from [Rdatasets](https://vincentarelbundock.gith
 1. **FLCHAIN** - Free Light Chain Study
    - URL: https://vincentarelbundock.github.io/Rdatasets/csv/survival/flchain.csv
    - Save as: `flchain_final.csv`
-   - **Note**: Missing values in continuous covariates are imputed to the mean, while missing values in discrete covariates are imputed to the mode.
+   - **Note**: Missing values in continuous covariates should be imputed to the mean, while missing values in discrete covariates needs to be imputed to the mode.
 
 2. **NWTCO** - National Wilms Tumor Study
    - URL: https://vincentarelbundock.github.io/Rdatasets/csv/survival/nwtco.csv
