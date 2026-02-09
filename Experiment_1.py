@@ -474,7 +474,7 @@ def train_and_predict_deephit(X_tr, t_tr, e_tr, X_te, t_te, e_te, epochs=1000, p
         
         model = DeepHitSingle(net, tt.optim.Adam(0.01), alpha=0.3, sigma=0.1, duration_index=labtrans.cuts)
         
-        batch_size = 256
+        batch_size = 64
         callbacks = [tt.callbacks.EarlyStopping(patience=patience)]
         
         model.fit(X_tr.astype('float32'), y_train, batch_size, epochs, 
@@ -529,7 +529,7 @@ def train_and_predict_deepsurv(X_tr, t_tr, e_tr, X_te, t_te, e_te, epochs=1000, 
         
         model = PyCoxCoxPH(net, tt.optim.Adam(0.01))
         
-        batch_size = 256
+        batch_size = 64
         callbacks = [tt.callbacks.EarlyStopping(patience=patience)]
         
         model.fit(X_tr.astype('float32'), (t_tr, e_tr), batch_size, epochs, 
