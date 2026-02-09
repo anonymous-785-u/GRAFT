@@ -36,7 +36,7 @@ GRAFT outperforms classical and deep learning baselines in both discrimination (
 
 ```bash
 # Core dependencies
-numpy>=1.21.0
+numpy<2
 pandas>=1.3.0
 scikit-learn>=1.0.0
 scipy>=1.7.0
@@ -65,14 +65,16 @@ git clone https://github.com/anonymous-785-u/GRAFT.git
 cd GRAFT
 
 # Create conda environment
-conda create -n graft python=3.8
+conda create -n graft python=3.10
 conda activate graft
 
 # Install PyTorch with CUDA (check https://pytorch.org for your CUDA version)
-conda install pytorch torchvision torchaudio pytorch-cuda=11.8 -c pytorch -c nvidia
+pip install torch==2.1.0 torchvision==0.16.0 torchaudio==2.1.0 --index-url https://download.pytorch.org/whl/cu121
+pip install https://github.com/teddykoker/torchsort/releases/download/v0.1.10/torchsort-0.1.10+pt21cu121-cp310-cp310-linux_x86_64.whl
+pip install "numpy<2" --force-reinstall
 
 # Install other dependencies
-pip install numpy pandas scikit-learn scipy lifelines pycox scikit-survival torchsort matplotlib torchtuples
+pip install numpy pandas scikit-learn scipy lifelines pycox scikit-survival matplotlib torchtuples
 ```
 
 ## Dataset Setup
