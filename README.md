@@ -247,14 +247,6 @@ print(f"GPU: {torch.cuda.get_device_name(0)}")
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## Acknowledgments
-
-- **pycox**: For GBSG, METABRIC, and SUPPORT datasets
-- **scikit-survival**: For AIDS dataset (ACTG 320 study)
-- **Rdatasets**: For FLCHAIN and NWTCO datasets
-- **Yamada et al. (2020)**: For the Stochastic Gates methodology
-- **PyTorch**: For deep learning framework
-
 ## Contact
 
 For questions or issues, please open an issue on GitHub or contact the authors.
