@@ -29,8 +29,8 @@ GRAFT outperforms classical and deep learning baselines in both discrimination (
 
 ### System Requirements
 - **Python**: 3.8 or higher
-- **GPU**: CUDA-capable GPU recommended (optional but faster)
-- **RAM**: 8GB minimum, 16GB recommended
+- **GPU**: CUDA-capable GPU recommended (optional but significantly faster)
+- **RAM**: 16GB minimum, 32GB recommended
 - **Storage**: ~5GB for datasets and outputs
 
 ### Python Packages
@@ -58,7 +58,25 @@ torchtuples>=0.2.2
 
 ## Installation
 
-### Using conda
+### Option 1: Using pip
+
+```bash
+# Clone the repository
+git clone https://github.com/anonymous-785-u/GRAFT.git
+cd GRAFT
+
+# Create virtual environment (recommended)
+python -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+
+# Install dependencies
+pip install numpy pandas scikit-learn scipy
+pip install lifelines pycox scikit-survival
+pip install torch torchsort torchtuples
+pip install matplotlib
+```
+
+### Option 2: Using conda
 
 ```bash
 # Clone the repository
@@ -84,18 +102,21 @@ These datasets are automatically downloaded via `pycox`:
 - **METABRIC** (Molecular Taxonomy of Breast Cancer International Consortium)
 - **SUPPORT** (Study to Understand Prognoses Preferences Outcomes and Risks of Treatment)
 
-### Manual Download (3 datasets)
+### Included in Repository (1 dataset)
+- **AIDS** - AIDS Clinical Trial (ACTG 320 study)
+  - File: `aids.csv`
+  - Original source: [scikit-survival](https://github.com/sebp/scikit-survival/blob/master/sksurv/datasets/data/actg320.arff)
+  - Already included in the repository, no download needed
+
+### Manual Download (2 datasets)
 Download the following datasets from [Rdatasets](https://vincentarelbundock.github.io/Rdatasets/articles/data.html) and place them in the **same directory** as the experiment scripts:
 
-1. **AIDS** - AIDS Clinical Trial
-   - URL: https://vincentarelbundock.github.io/Rdatasets/csv/survival/aids.csv
-   - Save as: `aids.csv`
-
-2. **FLCHAIN** - Free Light Chain Study
+1. **FLCHAIN** - Free Light Chain Study
    - URL: https://vincentarelbundock.github.io/Rdatasets/csv/survival/flchain.csv
    - Save as: `flchain_final.csv`
+   - **Note**: Missing values in continuous covariates are imputed to the mean, while missing values in discrete covariates are imputed to the mode.
 
-3. **NWTCO** - National Wilms Tumor Study
+2. **NWTCO** - National Wilms Tumor Study
    - URL: https://vincentarelbundock.github.io/Rdatasets/csv/survival/nwtco.csv
    - Save as: `nwtco.csv`
 
@@ -103,7 +124,6 @@ Download the following datasets from [Rdatasets](https://vincentarelbundock.gith
 
 ```bash
 # Download required datasets
-wget -O aids.csv https://vincentarelbundock.github.io/Rdatasets/csv/survival/aids.csv
 wget -O flchain_final.csv https://vincentarelbundock.github.io/Rdatasets/csv/survival/flchain.csv
 wget -O nwtco.csv https://vincentarelbundock.github.io/Rdatasets/csv/survival/nwtco.csv
 ```
@@ -114,7 +134,7 @@ GRAFT/
 ├── Experiment_1.py
 ├── Experiment_2.py
 ├── Experiment_3.py
-├── aids.csv              # Downloaded
+├── aids.csv              # Included in repo
 ├── flchain_final.csv     # Downloaded
 ├── nwtco.csv            # Downloaded
 ├── run_all_experiments.sh
@@ -137,8 +157,6 @@ python Experiment_1.py
 - Uses 3-fold cross-validation with 3 random seeds (42, 43, 44)
 - Reports C-index and Integrated Brier Score (IBS)
 - Shows both fold-averaged and seed-averaged results
-
-**Expected runtime:** 60-90 minutes (with GPU)
 
 **Outputs:**
 - Console tables with detailed results per dataset
@@ -210,6 +228,8 @@ This will:
 - Display progress and timestamps
 - Generate a summary report
 
+**Total expected runtime:** 3-4 hours (with GPU)
+
 ## GPU Acceleration
 
 GRAFT, DeepHit, and DeepSurv automatically use GPU if available. To verify GPU usage:
@@ -219,10 +239,6 @@ import torch
 print(f"CUDA available: {torch.cuda.is_available()}")
 print(f"GPU: {torch.cuda.get_device_name(0)}")
 ```
-
-**Performance comparison:**
-- **With GPU**: ~60-90 minutes per experiment
-- **Without GPU (CPU only)**: ~4-6 hours per experiment
 
 ## Results Interpretation
 
@@ -244,11 +260,17 @@ print(f"GPU: {torch.cuda.get_device_name(0)}")
 - **Seed-Averaged**: Mean across seeds for each fold, then std across folds
   - Captures variance from data partitioning
 
-
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
+## Acknowledgments
+
+- **pycox**: For GBSG, METABRIC, and SUPPORT datasets
+- **scikit-survival**: For AIDS dataset (ACTG 320 study)
+- **Rdatasets**: For FLCHAIN and NWTCO datasets
+- **Yamada et al. (2020)**: For the Stochastic Gates methodology
+- **PyTorch**: For deep learning framework
 
 ## Contact
 
