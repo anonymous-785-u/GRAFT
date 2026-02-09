@@ -28,7 +28,7 @@ GRAFT outperforms classical and deep learning baselines in both discrimination (
 
 ### System Requirements
 - **Python**: 3.8 or higher
-- **GPU**: CUDA-capable GPU recommended (optional but significantly faster)
+- **GPU**: CUDA-capable GPU recommended (optional but faster)
 - **RAM**: 8GB minimum, 16GB recommended
 - **Storage**: ~5GB for datasets and outputs
 
